@@ -148,7 +148,7 @@ public class YahtzeeFrame extends JFrame
 					dice[i].roll();
 			}
 
-			playerOne.IncrementRollCount();
+			playerOne.incrementRollCount();
 
 			if (playerOne.getRollCount() == 3)
 			{

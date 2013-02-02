@@ -150,7 +150,7 @@ public class YahtzeeApplet extends JApplet
 					dice[i].roll();
 			}
 
-			playerOne.IncrementRollCount();
+			playerOne.incrementRollCount();
 
 			if (playerOne.getRollCount() == 3)
 			{
