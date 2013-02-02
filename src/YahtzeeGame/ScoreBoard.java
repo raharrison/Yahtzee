@@ -292,6 +292,21 @@ class ScoreBoard extends JPanel implements Resettable
 	}
 
 	/**
+	 * Get the Yahtzee ScoreGroup from the set of categories
+	 * 
+	 * @return The Yahtzee ScoreGroup for the current game, null if not present.
+	 */
+	private ScoreGroup getYahtzeeScoreGroup()
+	{
+		for (int i = 0; i < categories.length; i++)
+		{
+			if (categories[i].isYahtzeeScoreGroup())
+				return categories[i];
+		}
+		return null;
+	}
+
+	/**
 	 * If the set of dice is a Yahtzee and the Yahtzee category is zero we can
 	 * initiate the joker rules.
 	 * 
@@ -420,6 +435,12 @@ class ScoreBoard extends JPanel implements Resettable
 		return true;
 	}
 
+	/*
+	 * Jokers Rules - Score total of all five dice in appropriate upper section
+	 * box if already filled in score in lower section as normal If both filled
+	 * in score zero in any free upper section
+	 */
+
 	/**
 	 * Remove a listener from the list of listeners
 	 * 
@@ -430,12 +451,6 @@ class ScoreBoard extends JPanel implements Resettable
 	{
 		listenerList.remove(ChangeListener.class, listener);
 	}
-
-	/*
-	 * Jokers Rules - Score total of all five dice in appropriate upper section
-	 * box if already filled in score in lower section as normal If both filled
-	 * in score zero in any free upper section
-	 */
 
 	/**
 	 * Reset the state of the ScoreBoard. Reset each ScoreGroup category.
@@ -487,21 +502,6 @@ class ScoreBoard extends JPanel implements Resettable
 		{
 			initiateJokerRules();
 		}
-	}
-
-	/**
-	 * Get the Yahtzee ScoreGroup from the set of categories
-	 * 
-	 * @return The Yahtzee ScoreGroup for the current game, null if not present.
-	 */
-	private ScoreGroup getYahtzeeScoreGroup()
-	{
-		for (int i = 0; i < categories.length; i++)
-		{
-			if (categories[i].isYahtzeeScoreGroup())
-				return categories[i];
-		}
-		return null;
 	}
 
 	/**
