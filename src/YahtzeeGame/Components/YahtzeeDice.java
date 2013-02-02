@@ -84,6 +84,97 @@ public class YahtzeeDice extends JComponent implements MouseListener,
 	}
 
 	/**
+	 * Getter for the hold state
+	 * 
+	 * @return True if dice is currently being held, false otherwise.
+	 */
+	public boolean getHoldState()
+	{
+		return holdState;
+	}
+
+	/**
+	 * Make sure dice is properly rendered when added to a panel/frame.
+	 */
+	@Override
+	public Dimension getMaximumSize()
+	{
+		return getPreferredSize();
+	}
+
+	/**
+	 * Make sure dice is properly rendered when added to a panel/frame.
+	 */
+	@Override
+	public Dimension getMinimumSize()
+	{
+		return getPreferredSize();
+	}
+
+	/**
+	 * Make sure dice is properly rendered when added to a panel/frame.
+	 */
+	@Override
+	public Dimension getPreferredSize()
+	{
+		return new Dimension(getWidth(), getHeight());
+	}
+
+	/**
+	 * Get the value of the dice
+	 * 
+	 * @return The current value of the dice
+	 */
+	public int getValue()
+	{
+		return value;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{}
+
+	/**
+	 * Set flag and change cursor when mouse enters the boundaries of the dice
+	 */
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+		mouseEntered = true;
+
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+		repaint();
+	}
+
+	/**
+	 * Reset flag and cursor when mouse exits boundaries of the dice.
+	 */
+	@Override
+	public void mouseExited(MouseEvent e)
+	{
+		mouseEntered = false;
+
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+		repaint();
+	}
+
+	/**
+	 * Toggle the hold state when mouse is pressed
+	 */
+	@Override
+	public void mousePressed(MouseEvent e)
+	{
+		holdState = !holdState;
+		repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{}
+
+	/**
 	 * Paint the dice display onto the component. Displays the current value in
 	 * dots on the dice side. If the mouse is currently hovering over the dice,
 	 * the outer stroke is yellow, else black.
@@ -180,6 +271,17 @@ public class YahtzeeDice extends JComponent implements MouseListener,
 	}
 
 	/**
+	 * Reset the state of the dice
+	 */
+	@Override
+	public void reset()
+	{
+		value = 1;
+		holdState = false;
+		repaint();
+	}
+
+	/**
 	 * Roll the Yahtzee dice. Give the dice a new random value and repaint the
 	 * display.
 	 */
@@ -187,87 +289,6 @@ public class YahtzeeDice extends JComponent implements MouseListener,
 	{
 		value = (int) (Math.random() * 6 + 1);
 		repaint();
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{}
-
-	/**
-	 * Set flag and change cursor when mouse enters the boundaries of the dice
-	 */
-	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		mouseEntered = true;
-
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-		repaint();
-	}
-
-	/**
-	 * Reset flag and cursor when mouse exits boundaries of the dice.
-	 */
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		mouseEntered = false;
-
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-		repaint();
-	}
-
-	/**
-	 * Toggle the hold state when mouse is pressed
-	 */
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		holdState = !holdState;
-		repaint();
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{}
-
-	/**
-	 * Make sure dice is properly rendered when added to a panel/frame.
-	 */
-	@Override
-	public Dimension getPreferredSize()
-	{
-		return new Dimension(getWidth(), getHeight());
-	}
-
-	/**
-	 * Make sure dice is properly rendered when added to a panel/frame.
-	 */
-	@Override
-	public Dimension getMinimumSize()
-	{
-		return getPreferredSize();
-	}
-
-	/**
-	 * Make sure dice is properly rendered when added to a panel/frame.
-	 */
-	@Override
-	public Dimension getMaximumSize()
-	{
-		return getPreferredSize();
-	}
-
-	/**
-	 * Getter for the hold state
-	 * 
-	 * @return True if dice is currently being held, false otherwise.
-	 */
-	public boolean getHoldState()
-	{
-		return holdState;
 	}
 
 	/**
@@ -279,26 +300,5 @@ public class YahtzeeDice extends JComponent implements MouseListener,
 	public void setHoldState(boolean hold)
 	{
 		holdState = hold;
-	}
-
-	/**
-	 * Get the value of the dice
-	 * 
-	 * @return The current value of the dice
-	 */
-	public int getValue()
-	{
-		return value;
-	}
-
-	/**
-	 * Reset the state of the dice
-	 */
-	@Override
-	public void reset()
-	{
-		value = 1;
-		holdState = false;
-		repaint();
 	}
 }
