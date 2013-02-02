@@ -2,32 +2,45 @@ package YahtzeeGame.Categories;
 
 import YahtzeeGame.Components.YahtzeeDice;
 
+/**
+ * Chance category
+ * 
+ * @author Ryan Harrison
+ * 
+ */
 class Chance extends Category
 {
-    public int getScore(YahtzeeDice[] dice)
-    {
-	int sum = 0;
-
-	for (int i = 0; i < 5; i++)
+	@Override
+	public int getCategoryIndex()
 	{
-	    sum += dice[i].getValue();
+		return 12;
 	}
 
-	return sum;
-    }
+	/**
+	 * Return the sum of the values of every die
+	 */
+	@Override
+	public int getScore(YahtzeeDice[] dice)
+	{
+		int sum = 0;
 
-    public int getCategoryIndex()
-    {
-	return 12;
-    }
+		for (int i = 0; i < 5; i++)
+		{
+			sum += dice[i].getValue();
+		}
 
-    public String toString()
-    {
-	return "Chance";
-    }
+		return sum;
+	}
 
-    public int getYahtzeeBonusOverrideScore(YahtzeeDice[] dice)
-    {
-	return getScore(dice);
-    }
+	@Override
+	public int getYahtzeeBonusOverrideScore(YahtzeeDice[] dice)
+	{
+		return getScore(dice);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Chance";
+	}
 }

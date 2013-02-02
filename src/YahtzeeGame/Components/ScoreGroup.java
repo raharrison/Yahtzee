@@ -104,9 +104,9 @@ public class ScoreGroup extends JPanel implements Resettable
 	}
 
 	/**
-	 * Getter to determine if the group can be selected
+	 * Getter to determine if the group can be selected by the user
 	 * 
-	 * @return Can the component be selected
+	 * @return Can the component be selected by the user
 	 */
 	public boolean getCanBeSelected()
 	{
@@ -205,10 +205,10 @@ public class ScoreGroup extends JPanel implements Resettable
 	}
 
 	/**
-	 * Setter to determine if the group can be selected
+	 * Setter to determine if the group can be selected by the user
 	 * 
 	 * @param canSelect
-	 *            Can the component be selected
+	 *            Can the component be selected by the user
 	 */
 	public void setCanBeSelected(boolean canSelect)
 	{
