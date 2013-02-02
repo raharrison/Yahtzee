@@ -483,10 +483,25 @@ class ScoreBoard extends JPanel implements Resettable
 
 		// If the set of dice is a Yahtzee and the Yahtzee category is zero we
 		// can initiate the joker rules.
-		if (isDiceYahtzee(dice) && player.getHaveYahtzee())
+		if (isDiceYahtzee(dice) && getYahtzeeScoreGroup().getChosen())
 		{
 			initiateJokerRules();
 		}
+	}
+
+	/**
+	 * Get the Yahtzee ScoreGroup from the set of categories
+	 * 
+	 * @return The Yahtzee ScoreGroup for the current game, null if not present.
+	 */
+	private ScoreGroup getYahtzeeScoreGroup()
+	{
+		for (int i = 0; i < categories.length; i++)
+		{
+			if (categories[i].isYahtzeeScoreGroup())
+				return categories[i];
+		}
+		return null;
 	}
 
 	/**
