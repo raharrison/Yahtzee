@@ -44,9 +44,9 @@ public class ScoreGroup extends JPanel implements Resettable
 
 	/**
 	 * Determines whether or not this group is using an alternative scoring rule
-	 * when a Yahtzee has been made in the previous go.
+	 * when a Yahtzee has been made and the Yahtzee category is zero.
 	 */
-	protected boolean usingYahtzeeBonusOverrideScore;
+	protected boolean usingJokerRules;
 
 	/**
 	 * The name of the category this component wraps. Displayed by the component
@@ -80,7 +80,7 @@ public class ScoreGroup extends JPanel implements Resettable
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		canBeSelected = true;
 		chosen = false;
-		usingYahtzeeBonusOverrideScore = false;
+		usingJokerRules = false;
 
 		// Every group has a border to improve appearance
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -163,7 +163,7 @@ public class ScoreGroup extends JPanel implements Resettable
 	 */
 	public boolean getUsingOverrideScore()
 	{
-		return usingYahtzeeBonusOverrideScore;
+		return usingJokerRules;
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class ScoreGroup extends JPanel implements Resettable
 	 */
 	public void setUsingOverrideScore(boolean isUsing)
 	{
-		usingYahtzeeBonusOverrideScore = isUsing;
+		usingJokerRules = isUsing;
 	}
 
 	/**
@@ -260,8 +260,8 @@ public class ScoreGroup extends JPanel implements Resettable
 	{
 		if (!chosen)
 		{
-			// Get the score of the alternate system is needed
-			if (usingYahtzeeBonusOverrideScore)
+			// Get the score of the alternate system if needed
+			if (usingJokerRules)
 			{
 				this.score.setText(Integer.toString(category
 						.getYahtzeeBonusOverrideScore(dice)));

@@ -10,26 +10,30 @@ import YahtzeeGame.Components.YahtzeeDice;
  */
 class Bonus extends Category
 {
-	/**
-	 * A bonus category cannot generate a score, but is given one instead.
-	 */
-	public int getScore(YahtzeeDice[] dice)
-	{
-		return 0;
-	}
-
-	public String toString()
-	{
-		return "Bonus";
-	}
-
+	@Override
 	public int getCategoryIndex()
 	{
 		return 15;
 	}
 
+	/**
+	 * A bonus category cannot generate a score, but is given one instead.
+	 */
+	@Override
+	public int getScore(YahtzeeDice[] dice)
+	{
+		return 0;
+	}
+
+	@Override
 	public int getYahtzeeBonusOverrideScore(YahtzeeDice[] dice)
 	{
 		return 0;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Bonus";
 	}
 }
