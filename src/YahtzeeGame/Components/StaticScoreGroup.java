@@ -38,6 +38,7 @@ public class StaticScoreGroup extends ScoreGroup implements Resettable
 	{
 		this();
 		this.categoryName = name;
+		this.text.setText(categoryName);
 	}
 
 	/**
